@@ -1,0 +1,13 @@
+{
+    "pa": { 
+      "attribution_group": "CURRENCY",
+      "benchmark_weight": 0.999162261556576816706,
+      "portfolio_weight": 1.00000000000000009016,
+      "benchmark_return": 0.00259543727939366879720484946,
+      "portfolio_return": 0.004278135200000000385716669632,
+      "allocation": 1.901079849660434449162e-9,
+      "stock_selection": 0.001679113962283129273849037191,
+      "interaction": 0.000001407837716870877666808297,
+      "total_attribution": 0.00168052370107984981195029465 
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "indentation" : [
+    "on", {
+      "Feature": 0,
+      "Background": 0,
+      "Scenario": 0,
+      "Step": 4,
+      "Examples": 0,
+      "example": 4,
+      "given": 4,
+      "when": 4,
+      "then": 4,
+      "and": 4,
+      "but": 4,
+      "feature tag": 0,
+      "scenario tag": 0
+    }
+  ],
+  "no-files-without-scenarios" : "on",
+  "no-unnamed-features": "on",
+  "no-unnamed-scenarios": "on",
+  "no-dupe-scenario-names": "on",
+  "no-dupe-feature-names": "on",
+  "no-partially-commented-tag-lines": "on",
+  "no-trailing-spaces": "on",
+  "new-line-at-eof": ["on", "yes"],
+  "no-multiple-empty-lines": "on",
+  "no-empty-file": "on",
+  "no-scenario-outlines-without-examples": "on",
+  "name-length" : ["on", { "Feature": 500, "Scenario": 500, "Step": 1000 }],
+  "no-restricted-tags": ["on", {"tags": ["@watch", "@wip"]}],
+  "use-and": "on",
+  "no-duplicate-tags": "on",
+  "no-superfluous-tags": "on",
+  "no-homogenous-tags": "on",
+  "one-space-between-tags": "on"
+}

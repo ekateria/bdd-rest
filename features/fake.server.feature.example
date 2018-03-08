@@ -1,0 +1,20 @@
+Feature: Demonstrate fake server. Run only after yarn fake-server
+
+Background: 
+Given base url is "http://localhost:3000"
+
+Scenario: Profile name is typicode
+When GET request to "/profile"
+Then response "name" is "typicode"
+
+Scenario: First post author is typicode
+When GET request to "/posts"
+Then response "[0].author" is "typicode"
+
+# response value "value" is empty 
+Scenario: Assert value based on variable with multiple possible values []
+When GET request to "/profile"
+When response "value" value is saved to "myValue"
+When variable "myValue" has value "" THEN variable "newValue" is "yupiii"
+When variable "myValue" has value "1" THEN variable "newValue" is "nooooo"
+Then variable "newValue" has value "yupiii"

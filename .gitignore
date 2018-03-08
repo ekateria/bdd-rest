@@ -1,0 +1,12 @@
+bower_components/
+node_modules/
+*.orig
+/report/cucumber-report.json
+/report/report.html
+/config.yml
+/yarn-error.log
+/report/cucumber-report.html
+/report/cucumber-report.xml
+/test/report/*.html
+/report/*.html
+/report-cucumber.html

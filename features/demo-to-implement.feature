@@ -35,4 +35,5 @@ Background:
 
 Scenario: Response value contains
     When GET request to "/users"
-    And response "data.id" is "test"
+    And response "data.id" is "[1,2,3]"
+    And response "data.first_name" is "['George', 'Janet', 'Emma']"

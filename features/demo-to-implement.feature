@@ -35,5 +35,24 @@ Background:
 
 Scenario: Response value contains
     When GET request to "/users"
-    And response "data.id" is "[1,2,3]"
-    And response "data.first_name" is "['George', 'Janet', 'Emma']"
+    Then response "data.id" has items "[1,2.3]"
+    And response "data.first_name" has items "['George', 'Janet', 'Emma']"
+
+Scenario: Response value contains in table
+    When GET request to "/users"
+    Then response "data.id" has items 
+    |  1  |
+    |  2  |
+    |  3  |
+    And response "data.first_name" has items 
+    |  George  |
+    |  Janet   |
+    |  Emma    |
+    
+Scenario: Response array values
+    When GET request to "/users"
+    Then response "data" has items 
+    |  id  | first_name  |  last_name | avatar                                                              |
+    |  1   | George      |  Bluth     | https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg   |
+    |  2   | Janet       |  Weaver    | https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg  |
+    |  3   | Emma        |  Wong      | https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg |

@@ -33,26 +33,20 @@ Background:
 
 # GET and check response
 
-Scenario: Response value contains
-    When GET request to "/users"
-    Then response "data.id" has items "[1,2.3]"
-    And response "data.first_name" has items "['George', 'Janet', 'Emma']"
-
 Scenario: Response value contains in table
-    When GET request to "/users"
-    Then response "data.id" has items 
-    |  1  |
-    |  2  |
-    |  3  |
-    And response "data.first_name" has items 
-    |  George  |
-    |  Janet   |
-    |  Emma    |
+    Given base url is "http://localhost:3000"
+    When GET request to "/books"
+    Then response "books[1].authors.name" has items 
+    |  author 2  |
+    |  author 3  |
     
+
+# user should have message that "avatar1" is not key in json
+
 Scenario: Response array values
     When GET request to "/users"
     Then response "data" has items 
-    |  id  | first_name  |  last_name | avatar                                                              |
+    |  id  | first_name  |  last_name | avatar1                                                              |
     |  1   | George      |  Bluth     | https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg   |
     |  2   | Janet       |  Weaver    | https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg  |
     |  3   | Emma        |  Wong      | https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg |

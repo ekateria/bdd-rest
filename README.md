@@ -1,5 +1,7 @@
 # Massive REST API testing
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/znevrly/bdd-rest.svg)](https://greenkeeper.io/)
+
 ## How to install
 
     yarn install

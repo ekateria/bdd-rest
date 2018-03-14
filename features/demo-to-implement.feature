@@ -31,20 +31,20 @@ Background:
 
 # GET and check response
 
-Scenario: Response value contains in table
+Scenario: Response value contains in table with indexes
     Given base url is "http://localhost:3000"
     When GET request to "/books"
-    Then response "books[1].authors.name" has items 
+    Then response "books[1].authors" has items
+    |  name      |
     |  author 2  |
     |  author 3  |
-    
 
 # user should have message that "avatar1" is not key in json
 
 Scenario: Response array values
     When GET request to "/users"
-    Then response "data" has items 
-    |  id  | first_name  |  last_name | avatar1                                                              |
+    Then response "data" has items
+    |  id  | first_name  |  last_name | avatar1                                                             |
     |  1   | George      |  Bluth     | https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg   |
     |  2   | Janet       |  Weaver    | https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg  |
     |  3   | Emma        |  Wong      | https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg |

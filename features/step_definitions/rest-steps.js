@@ -456,15 +456,16 @@ Then('variable {string} has not value {string}', function (variableName, expecte
 	assert.notEqual(actualValue, expectedVariableValue, "Variable " + variableName + "has not value " + expectedVariableValue);
 });
 
+
 Then('response {string} has items {string}', function (variableName, expectedValues) {
 	//check if the input value in the format <data.id> or just <data>
 	const arrDataName = variableName.split('.');
-	console.log(JSON.parse(expectedValues));
+	const expectedValuesArray = expectedValues.match(/(\d|\w)+/gi);
 	if (arrDataName.length > 1) {
 		const actualValues = JSON.parse(this.lastResponse["text"])[arrDataName[0]];
 		const subLevel = arrDataName[1];
 		for (var i = 0; i < actualValues.length; i++) {
-			assert.equal(actualValues[i][subLevel], JSON.parse(expectedValues)[i], "Variable " + variableName + "has value " + actualValues[i][subLevel] + " at the index " + i);
+			assert.equal(actualValues[i][subLevel], expectedValuesArray[i], "Variable " + variableName + "has value " + actualValues[i][subLevel] + " at the index " + i);
 		}
 	} else {
 		assert.fail("", "", "Format of variable is expected in the format <data.id>");
@@ -472,26 +473,17 @@ Then('response {string} has items {string}', function (variableName, expectedVal
 });
 
 Then('response {string} has items', function (variableName, dataTable) {
-	//check if the input value in the format <data.id> or just <data>
-	const arrDataName = variableName.split('.');
-	if (arrDataName.length > 1) {
-		const actualValues = JSON.parse(this.lastResponse["text"])[arrDataName[0]];
-		const subLevel = arrDataName[1];
-		for (var i = 0; i < actualValues.length; i++) {
-			assert.equal(actualValues[i][subLevel], dataTable.raw()[i][0], "Variable " + variableName + "has value " + actualValues[i][subLevel] + " at the index " + i);
-		}
-	} else {
-		const actualValues = JSON.parse(this.lastResponse["text"])[arrDataName[0]];
-		var attributes = [];
-		dataTable.raw()[0].forEach(attr => {
-			attributes.push(attr)
-		})
-		const data = dataTable.rows();
-		for (var i = 0; i < actualValues.length; i++) {
-			for (var j = 0; j < attributes.length; j++) {
-				const currentAttribute = attributes[j];
-				assert.equal(actualValues[i][currentAttribute], data[i][j], "Variable " + variableName + "has value " + actualValues[i][currentAttribute] + " at the index " + i);
-			}
+	const actualJsonBody = eval(this.lastResponse.body);
+	const actualValues = _.get(actualJsonBody, variableName);
+	var attributes = [];
+	dataTable.raw()[0].forEach(attr => {
+		attributes.push(attr)
+	})
+	const data = dataTable.rows();
+	for (var i = 0; i < actualValues.length; i++) {
+		for (var j = 0; j < attributes.length; j++) {
+			const currentAttribute = attributes[j];
+			assert.equal(actualValues[i][currentAttribute], data[i][j], "Variable " + variableName + " has value " + actualValues[i][currentAttribute] + " at the index " + i);
 		}
 	}
 });
